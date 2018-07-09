@@ -1,0 +1,76 @@
+[
+  {
+    "gender": "male",
+    "name": {
+      "title": "mr",
+      "first": "joel",
+      "last": "gonzalez"
+    },
+    "location": {
+      "street": "9365 samaritan dr",
+      "city": "memphis",
+      "state": "missouri",
+      "postcode": 49248
+    },
+    "email": "joel.gonzalez@example.com",
+    "login": {
+      "username": "bigsnake860",
+      "password": "screwyou",
+      "salt": "zP9XQhu6",
+      "md5": "0a3696514ca07a1aa8c26dfdcbb26b11",
+      "sha1": "126bb7757dbfc5a756530c876afd7273ea79ff85",
+      "sha256": "6d39d431b62e2e6cc89089e658830e7cac9e5e24ba0f81f10ec350f24745876b"
+    },
+    "dob": "1990-02-12 18:23:32",
+    "registered": "2009-11-06 15:35:26",
+    "phone": "(568)-213-2751",
+    "cell": "(004)-911-3317",
+    "id": {
+      "name": "SSN",
+      "value": "481-48-4215"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/56.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/56.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/56.jpg"
+    },
+    "nat": "US"
+  },
+  {
+    "gender": "male",
+    "name": {
+      "title": "mr",
+      "first": "valdemar",
+      "last": "jørgensen"
+    },
+    "location": {
+      "street": "6437 mågevej",
+      "city": "v.skerninge",
+      "state": "sjælland",
+      "postcode": 24205
+    },
+    "email": "valdemar.jørgensen@example.com",
+    "login": {
+      "username": "silverpeacock603",
+      "password": "quan",
+      "salt": "vZdW8vtx",
+      "md5": "bfafbf926328d17655c72c205da9a9f4",
+      "sha1": "c0450b236096f0e53206c0876d2ea78c4cc01045",
+      "sha256": "01abd4722a2a4e9f79b8e1176ed6eebeb25b1e4cbbca378caba94f33c3b3f057"
+    },
+    "dob": "1984-07-08 18:56:02",
+    "registered": "2014-10-20 11:08:53",
+    "phone": "78745309",
+    "cell": "78261451",
+    "id": {
+      "name": "CPR",
+      "value": "309704-6360"
+    },
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/42.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/42.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/42.jpg"
+    },
+    "nat": "DK"
+  }
+]
