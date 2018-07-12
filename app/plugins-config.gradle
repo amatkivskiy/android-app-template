@@ -29,22 +29,59 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+task('jacocoReports') {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for all variants"
+}
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
+variants().all { variant ->
+    def variantName = variant.name
+    def variantCapName = variant.name.capitalize()
+    def variantTask = task("jacoco${variantCapName}Report", type: JacocoReport, dependsOn: "test${variantCapName}UnitTest") {
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports for $variantCapName"
+        enabled = true
+        reports {
+            xml.enabled = true
+            html.enabled = true
+            csv.enabled = false
+        }
+
+        def fileFilter = [ '**/R.class',
+                           '**/R$*.class',
+                           '**/BuildConfig.*',
+                           '**/Manifest*.*',
+                           '**/*Test*.*',
+                           'android/**/*.*',
+                           '**/*_Factory.*',
+                           '**/*_MembersInjector.*',
+                           '**/*ActivityStarter.*',
+                           '**/dagger/**'
+        ]
+        def classTree = fileTree(
+                dir: variant.javaCompiler.destinationDir,
+                excludes: fileFilter
+        ) + fileTree(
+                dir: "$buildDir/tmp/kotlin-classes/$variantName",
+                excludes: fileFilter
+        )
+
+        sourceDirectories = files([
+                "src/main/java", "src/main/kotlin",
+                "src/$variantName/java", "src/$variantName/kotlin"
+        ])
+        classDirectories = files([classTree])
+        executionData = files("${buildDir}/jacoco/test${variantCapName}UnitTest.exec")
     }
+    jacocoReports.dependsOn variantTask
+}
 
-    def fileFilter = [
-            '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$[0-9].*'
-    ]
-    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
-    def mainSrc = "$project.projectDir/src/main/kotlin"
+check.dependsOn jacocoReports
 
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
-    ])
+def variants() {
+    if (project.android.hasProperty('libraryVariants')) {
+        return project.android.libraryVariants
+    } else {
+        return project.android.applicationVariants
+    }
 }
