@@ -1,6 +1,18 @@
 package com.github.amatkivskiy.template.domain.model
 
-data class User(val name: Name, val email: String, val picture: Picture, val phone: String, val cell: String)
+import com.google.gson.annotations.SerializedName
 
-data class Name(val first: String, val last: String)
-data class Picture(val large: String)
+data class User(
+        @SerializedName("name") val name: Name,
+        @SerializedName("email") val email: String,
+        @SerializedName("picture") val picture: Picture,
+        @SerializedName("phone") val phone: String,
+        @SerializedName("cell") val cell: String
+)
+
+data class Name(
+        @SerializedName("first") val first: String,
+        @SerializedName("last") val last: String
+)
+
+data class Picture(@SerializedName("large") val large: String)

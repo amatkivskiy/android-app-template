@@ -12,7 +12,7 @@ fun ImageView.loadUrl(
     transformations: List<Transformation> = emptyList()
 ) {
 
-    Picasso.with(this.context)
+    Picasso.get()
         .load(url)
         .fit()
         .placeholder(placeholder)
