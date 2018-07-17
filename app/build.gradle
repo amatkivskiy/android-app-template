@@ -111,7 +111,7 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}"
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlinTest}"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"
 
     // Instrumentation Testing
     androidTestImplementation "com.android.support.test:runner:${versions.supportRunner}"
