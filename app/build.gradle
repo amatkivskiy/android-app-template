@@ -9,6 +9,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 apply from: 'plugins-config.gradle'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'org.sonarqube'
 
 android {
     compileSdkVersion setup.compileSdk
