@@ -7,8 +7,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
-apply from: 'plugins-config.gradle'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'gnag'
+apply from: 'plugins-config.gradle'
 
 android {
     compileSdkVersion setup.compileSdk
@@ -102,7 +103,7 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$versions.timber"
-    ktlint "com.github.shyiko:ktlint:$versions.klint"
+    // ktlint "com.github.shyiko:ktlint:$versions.klint"
 
     // Unit Testing
 
