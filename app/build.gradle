@@ -47,6 +47,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        // if set to true (default), stops the build if errors are found.
+        abortOnError false
+  }
 }
 
 dependencies {
