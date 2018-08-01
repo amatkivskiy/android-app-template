@@ -54,6 +54,8 @@ class GetUsersListUseCaseTests {
         firstUser.name `should not be` null
         firstUser.name.first `should be equal to` "joel"
         firstUser.name.last `should be equal to` "gonzalez"
+        firstUser.phone `should be equal to` "(568)-213-2751"
+        firstUser.cell`should be equal to` "(004)-911-3317"
 
         firstUser.picture `should not be` null
         firstUser.picture.large `should be equal to` "https://randomuser.me/api/portraits/men/56.jpg"
@@ -61,6 +63,8 @@ class GetUsersListUseCaseTests {
         secondUser.name `should not be` null
         secondUser.name.first `should be equal to` "valdemar"
         secondUser.name.last `should be equal to` "jørgensen"
+        secondUser.phone `should be equal to` "78745309"
+        secondUser.cell `should be equal to` "78261451"
 
         secondUser.picture `should not be` null
         secondUser.picture.large `should be equal to` "https://randomuser.me/api/portraits/men/42.jpg"
