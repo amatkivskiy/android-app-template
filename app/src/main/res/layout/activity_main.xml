@@ -8,7 +8,12 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/view_toolbar" />
+        layout="@layout/view_toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_beers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
         android:id="@+id/recycler_view_beers"
