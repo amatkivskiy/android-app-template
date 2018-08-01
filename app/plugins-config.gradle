@@ -1,25 +1,28 @@
-configurations {
-    ktlint
-}
+//--------------  KTLint Configuration  -------------------
+// configurations {
+//     ktlint
+// }
 
-task ktlint(type: JavaExec, group: "verification") {
-    description = "Check Kotlin code style."
-    classpath = configurations.ktlint
-    main = "com.github.shyiko.ktlint.Main"
-    args "src/**/*.kt", "--color"
-    // to generate report in checkstyle format prepend following args:
-    // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-    // see https://github.com/shyiko/ktlint#usage for more
-}
+// task ktlint(type: JavaExec, group: "verification") {
+//     description = "Check Kotlin code style."
+//     classpath = configurations.ktlint
+//     main = "com.github.shyiko.ktlint.Main"
+//     args "src/**/*.kt", "--color"
+//     // to generate report in checkstyle format prepend following args:
+//     // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+//     // see https://github.com/shyiko/ktlint#usage for more
+// }
 
-check.dependsOn ktlint
+// check.dependsOn ktlint
 
-task ktlintFormat(type: JavaExec, group: "formatting") {
-    description = "Fix Kotlin code style deviations."
-    classpath = configurations.ktlint
-    main = "com.github.shyiko.ktlint.Main"
-    args "-F", "src/**/*.kt"
-}
+// task ktlintFormat(type: JavaExec, group: "formatting") {
+//     description = "Fix Kotlin code style deviations."
+//     classpath = configurations.ktlint
+//     main = "com.github.shyiko.ktlint.Main"
+//     args "-F", "src/**/*.kt"
+// }
+
+//--------------  JACOCO Configuration  -------------------
 
 jacoco {
     toolVersion = '0.8.0'
@@ -84,4 +87,23 @@ def variants() {
     } else {
         return project.android.applicationVariants
     }
+}
+
+//--------------  Gnag Configuration  -------------------
+
+gnag {
+    enabled true
+    failOnError true
+    ktlint {
+        enabled true
+    }
+    androidLint {
+        enabled true
+        severity 'Error'
+    }
+    github {
+        rootUrl 'https://api.github.com/repos/'
+        repoName 'amatkivskiy/android-app-template'
+  }
+
 }
