@@ -41,12 +41,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // Required for latest Jacoco version (0.8.2-SNAPSHOT) which supports Kotlin data classes.
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     dependencies {
         classpath "com.android.tools.build:gradle:3.3.0-alpha03"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.51"
-        classpath "org.jacoco:org.jacoco.core:0.8.0"
+        classpath "org.jacoco:org.jacoco.core:0.8.2-SNAPSHOT"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.3"
         classpath "com.btkelly:gnag:2.0.0"
     }
@@ -58,6 +60,8 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        // Required for latest Jacoco version (0.8.2-SNAPSHOT) which supports Kotlin data classes.
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
 
