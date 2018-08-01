@@ -5,8 +5,8 @@ import android.widget.LinearLayout
 import com.github.amatkivskiy.template.R
 import com.github.amatkivskiy.template.presentation.dagger.component.PresenterComponent
 import com.github.amatkivskiy.template.presentation.ui.BaseDaggerMvpFragment
-import com.github.amatkivskiy.template.presentation.utils.bindView
 import com.github.amatkivskiy.template.util.loadUrl
+import kotterknife.bindView
 
 class UserPhotosFragment : BaseDaggerMvpFragment<UserPhotosView, UserPhotosPresenter>(), UserPhotosView {
     private val photosContainerLayout: LinearLayout by bindView(R.id.layout_photos_container)

@@ -18,11 +18,11 @@ import com.github.amatkivskiy.template.presentation.dagger.component.PresenterCo
 import com.github.amatkivskiy.template.presentation.ui.BaseDaggerMvpActivity
 import com.github.amatkivskiy.template.presentation.ui.details.contacts.UserContactsFragmentStarter
 import com.github.amatkivskiy.template.presentation.ui.details.photos.UserPhotosFragment
-import com.github.amatkivskiy.template.presentation.utils.bindView
 import com.github.amatkivskiy.template.util.CircleTransform
 import com.github.amatkivskiy.template.util.loadUrl
 import com.marcinmoskala.activitystarter.argExtra
 import com.mcxiaoke.koi.ext.toast
+import kotterknife.bindView
 
 @MakeActivityStarter
 class UserDetailsActivity : BaseDaggerMvpActivity<UserDetailsView, UserDetailsPresenter>(), UserDetailsView {
