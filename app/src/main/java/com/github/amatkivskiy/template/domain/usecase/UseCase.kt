@@ -30,7 +30,8 @@ abstract class UseCase<V : Any, E : Exception>(private val threadExecutor: Threa
         checkNotNull(threadExecutor, "threadExecutor")
         checkNotNull(postExecutionThread, "postExecutionThread")
 
-        return getRawObservable().subscribeOn(Schedulers.from(threadExecutor!!))
+        return getRawObservable()
+                .subscribeOn(Schedulers.from(threadExecutor!!))
                 .observeOn(postExecutionThread?.scheduler)
     }
 }
