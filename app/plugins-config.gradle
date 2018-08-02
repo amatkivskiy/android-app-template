@@ -104,6 +104,7 @@ gnag {
     github {
         rootUrl 'https://api.github.com/repos/'
         repoName 'amatkivskiy/android-app-template'
+        authToken "$System.env.GITHUB_TOKEN"
+        issueNumber "$System.env.BITRISE_PULL_REQUEST"
   }
-
 }

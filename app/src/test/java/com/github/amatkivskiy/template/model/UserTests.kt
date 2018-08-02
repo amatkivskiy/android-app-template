@@ -9,7 +9,7 @@ import org.junit.Test
 class UserTests {
 
     @Test
-    fun `user constructor works fine`() {
+    fun `all user models constructors work fine`() {
         val name = Name("first", "second")
         val email = "email"
         val picture = Picture("image")

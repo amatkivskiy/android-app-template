@@ -111,7 +111,6 @@ dependencies {
     // ktlint "com.github.shyiko:ktlint:$versions.klint"
 
     // Unit Testing
-
     //    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.mockwebserver}"
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     testImplementation "com.nhaarman:mockito-kotlin:${versions.mockitoKotlin}"
@@ -122,4 +121,24 @@ dependencies {
     // Instrumentation Testing
     androidTestImplementation "com.android.support.test:runner:${versions.supportRunner}"
     androidTestImplementation "com.android.support.test:rules:${versions.supportRules}"
+}
+
+task performCheckAndQuickBuild(type: GradleBuild) {
+    tasks = ['clean', 'gnagCheck', 'jacocoDebugReport', 'assembleDebug']
+}
+
+task performCheckAndFullBuild(type: GradleBuild) {
+    tasks = ['clean', 'gnagReport', 'jacocoDebugReport', 'build']
+}
+
+// if the build was triggered by the pull request then performs full build otherwise runs quick
+// build
+task  performBuild(type: GradleBuild) {
+    if (System.env['BITRISE_PULL_REQUEST'] != null) {
+        println "Building the app for the PR"
+        tasks = ['performCheckAndFullBuild']
+    } else {
+        println "Building the app for the commit"
+        tasks = ['performCheckAndQuickBuild']
+    }
 }
