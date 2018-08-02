@@ -31,6 +31,6 @@ abstract class UseCase<V : Any, E : Exception>(private val threadExecutor: Threa
         checkNotNull(postExecutionThread, "postExecutionThread")
 
         return getRawObservable().subscribeOn(Schedulers.from(threadExecutor!!))
-            .observeOn(postExecutionThread?.scheduler)
+                .observeOn(postExecutionThread?.scheduler)
     }
 }

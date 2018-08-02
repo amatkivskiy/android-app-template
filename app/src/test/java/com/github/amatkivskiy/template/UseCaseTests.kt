@@ -7,6 +7,7 @@ import com.github.kittinunf.result.Result
 import com.nhaarman.mockito_kotlin.doAnswer
 import io.reactivex.Observable
 import io.reactivex.schedulers.TestScheduler
+import org.amshove.kluent.`should be`
 import org.amshove.kluent.any
 import org.amshove.kluent.mock
 import org.amshove.kluent.shouldBeEqualTo
@@ -46,24 +47,27 @@ class UseCaseTests {
     @Test
     fun `get raw observable completes with success`() {
         useCase.getRawObservable()
-            .test()
-            .assertValueCount(1)
-            .assertNoErrors()
-            .assertComplete()
+                .test()
+                .assertValueCount(1)
+                .assertNoErrors()
+                .assertComplete()
+                .values()[0]
+                .get()
+                .`should be`(1)
     }
 
     @Test
     fun `get raw configured observable completes with success`() {
         val observer = useCase.getConfiguredObservable()
-            .test()
+                .test()
 
         // Trigger all scheduled actions.
         testScheduler.triggerActions()
 
         observer.await()
-            .assertValueCount(1)
-            .assertNoErrors()
-            .assertComplete()
+                .assertValueCount(1)
+                .assertNoErrors()
+                .assertComplete()
 
         // Verify that executors threads were used  when configuring observable schedulers
         verify(mockPostExecutionThread, times(1)).scheduler
@@ -89,10 +93,10 @@ class UseCaseTests {
     }
 
     private class TestUseCase constructor(threadExecutor: ThreadExecutor?, postExecutionThread: PostExecutionThread?)
-        : UseCase<Any, Exception>(threadExecutor, postExecutionThread) {
+        : UseCase<Int, Exception>(threadExecutor, postExecutionThread) {
 
-        override fun getRawObservable(): Observable<Result<Any, Exception>> {
-            return Observable.just(Result.of { Any() })
+        override fun getRawObservable(): Observable<Result<Int, Exception>> {
+            return Observable.just(Result.of { 1 })
         }
     }
 }

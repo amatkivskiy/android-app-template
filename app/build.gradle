@@ -108,7 +108,7 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$versions.timber"
-    // ktlint "com.github.shyiko:ktlint:$versions.klint"
+    ktlint "com.github.shyiko:ktlint:$versions.klint"
 
     // Unit Testing
     //    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.mockwebserver}"
