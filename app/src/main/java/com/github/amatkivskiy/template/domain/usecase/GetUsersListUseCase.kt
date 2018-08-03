@@ -9,8 +9,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class GetUsersListUseCase @Inject constructor(
-    threadExecutor: ThreadExecutor?,
-    postExecutionThread: PostExecutionThread?,
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread,
     private val userDataSource: UserDataSource
 ) : UseCase<List<User>, Exception>(threadExecutor, postExecutionThread) {
 

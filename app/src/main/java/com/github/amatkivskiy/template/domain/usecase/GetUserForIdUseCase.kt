@@ -10,8 +10,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class GetUserForIdUseCase @Inject constructor(
-    threadExecutor: ThreadExecutor?,
-    postExecutionThread: PostExecutionThread?,
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread,
     private val userDataSource: UserDataSource
 ) : UseCase<Option<User>, Exception>(threadExecutor, postExecutionThread) {
     private lateinit var userEmail: String

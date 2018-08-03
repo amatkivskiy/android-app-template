@@ -10,8 +10,6 @@ import io.reactivex.schedulers.TestScheduler
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.any
 import org.amshove.kluent.mock
-import org.amshove.kluent.shouldBeEqualTo
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.BDDMockito.given
@@ -19,7 +17,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
-import kotlin.test.assertFailsWith
 
 class UseCaseTests {
     private lateinit var useCase: TestUseCase
@@ -74,25 +71,7 @@ class UseCaseTests {
         verify(mockThreadExecutor, times(1)).execute(any(Runnable::class))
     }
 
-    @Test
-    fun `calling getConfiguredObservable with null threadExecutor fails`() {
-        val exception = assertFailsWith(IllegalStateException::class) {
-            TestUseCase(null, mockPostExecutionThread).getConfiguredObservable()
-        }
-        exception.message.shouldNotBeNull()
-        exception.message?.shouldBeEqualTo("'threadExecutor' should not be null")
-    }
-
-    @Test
-    fun `calling getConfiguredObservable with null postExecutionThread fails`() {
-        val exception = assertFailsWith(IllegalStateException::class) {
-            TestUseCase(mockThreadExecutor, null).getConfiguredObservable()
-        }
-        exception.message.shouldNotBeNull()
-        exception.message?.shouldBeEqualTo("'postExecutionThread' should not be null")
-    }
-
-    private class TestUseCase constructor(threadExecutor: ThreadExecutor?, postExecutionThread: PostExecutionThread?)
+    private class TestUseCase constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread)
         : UseCase<Int, Exception>(threadExecutor, postExecutionThread) {
 
         override fun getRawObservable(): Observable<Result<Int, Exception>> {

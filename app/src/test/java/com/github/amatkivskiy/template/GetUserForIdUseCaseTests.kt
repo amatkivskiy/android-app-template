@@ -35,7 +35,7 @@ class GetUserForIdUseCaseTests {
         val repository = DiskUserRepository(assertReader, gson)
         val dataSource = DefaultUserDataSource(repository)
 
-        this.getUserForIdUseCase = GetUserForIdUseCase(null, null, dataSource)
+        this.getUserForIdUseCase = GetUserForIdUseCase(mock(), mock(), dataSource)
     }
 
     @Test

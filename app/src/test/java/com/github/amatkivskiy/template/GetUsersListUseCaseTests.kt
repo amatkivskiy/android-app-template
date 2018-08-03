@@ -34,7 +34,7 @@ class GetUsersListUseCaseTests {
         val repository = DiskUserRepository(assertReader, gson)
         val dataSource = DefaultUserDataSource(repository)
 
-        this.getUsersListUseCase = GetUsersListUseCase(null, null, dataSource)
+        this.getUsersListUseCase = GetUsersListUseCase(mock(), mock(), dataSource)
     }
 
     @Test

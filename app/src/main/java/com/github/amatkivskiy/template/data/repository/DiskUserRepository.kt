@@ -2,11 +2,10 @@ package com.github.amatkivskiy.template.data.repository
 
 import arrow.core.Option
 import com.github.amatkivskiy.template.domain.model.User
+import com.github.amatkivskiy.template.util.fromJson
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import io.reactivex.Observable
 import java.io.InputStreamReader
-import java.io.Reader
 import javax.inject.Inject
 
 class DiskUserRepository @Inject constructor(private val reader: AssertsReader, private val gson: Gson) {
@@ -25,6 +24,4 @@ class DiskUserRepository @Inject constructor(private val reader: AssertsReader, 
                 return@map Option.fromNullable(user)
             }
     }
-
-    private inline fun <reified T> Gson.fromJson(reader: Reader): T = this.fromJson<T>(reader, object : TypeToken<T>() {}.type)
 }
