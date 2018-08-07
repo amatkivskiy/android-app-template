@@ -9,7 +9,6 @@ import com.github.amatkivskiy.template.domain.usecase.GetUsersListUseCase
 import com.github.amatkivskiy.template.testutils.assertCompletedAndGetFirstValue
 import com.github.amatkivskiy.template.testutils.streamFromFile
 import com.github.amatkivskiy.template.util.isSuccessful
-import com.github.amatkivskiy.template.util.isSuccessfulNonEmpty
 import com.google.gson.Gson
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.whenever
@@ -45,7 +44,7 @@ class GetUsersListUseCaseTests {
         val result = getUsersListUseCase.getRawObservable()
             .assertCompletedAndGetFirstValue()
 
-        result.isSuccessfulNonEmpty().`should be true`()
+        result.isSuccessful().`should be true`()
         result.get().size `should be equal to` 2
 
         val firstUser = result.get()[0]

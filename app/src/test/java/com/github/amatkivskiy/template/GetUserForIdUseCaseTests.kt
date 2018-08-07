@@ -9,7 +9,6 @@ import com.github.amatkivskiy.template.domain.usecase.GetUserForIdUseCase
 import com.github.amatkivskiy.template.testutils.assertCompletedAndGetFirstValue
 import com.github.amatkivskiy.template.testutils.streamFromFile
 import com.github.amatkivskiy.template.util.isSuccessful
-import com.github.amatkivskiy.template.util.isSuccessfulNonEmpty
 import com.github.amatkivskiy.template.util.whenNotNull
 import com.google.gson.Gson
 import com.nhaarman.mockito_kotlin.doReturn
@@ -48,7 +47,7 @@ class GetUserForIdUseCaseTests {
             .getRawObservable()
             .assertCompletedAndGetFirstValue()
 
-        result.isSuccessfulNonEmpty().`should be true`()
+        result.isSuccessful().`should be true`()
         result.get().isEmpty().`should be false`()
 
         val user = result.get().orNull()

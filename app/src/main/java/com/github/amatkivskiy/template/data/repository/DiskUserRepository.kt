@@ -18,7 +18,7 @@ class DiskUserRepository @Inject constructor(private val reader: AssertsReader, 
 
     fun getUserForEmail(email: String): Observable<Option<User>> {
         return getUserList()
-            .map {
+            .map { it ->
                 val user = it.find { email == it.email }
 
                 return@map Option.fromNullable(user)

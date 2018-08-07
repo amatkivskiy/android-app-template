@@ -116,9 +116,7 @@ class Investigator {
             val stackTrace = getStackTrace()
             val msg = StringBuilder()
 
-            if (Investigator.threadNameEnabled) {
-                msg.append(threadName())
-            }
+            msg.append(threadName())
 
             msg.append(instanceAndMethodName(instance, stackTrace))
 

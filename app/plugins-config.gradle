@@ -50,16 +50,19 @@ variants().all { variant ->
             csv.enabled = false
         }
 
-        def fileFilter = [ '**/R.class',
-                           '**/R$*.class',
-                           '**/BuildConfig.*',
-                           '**/Manifest*.*',
-                           '**/*Test*.*',
-                           'android/**/*.*',
-                           '**/*_Factory.*',
-                           '**/*_MembersInjector.*',
-                           '**/*ActivityStarter.*',
-                           '**/dagger/**'
+        def fileFilter = ['**/R.class',
+                          '**/R$*.class',
+                          /* This  is made intentionally cause the focus should be on business logic */
+                          'com/github/amatkivskiy/template/presentation/**',
+
+                          '**/BuildConfig.*',
+                          '**/Manifest*.*',
+                          '**/*Test*.*',
+                          'android/**/*.*',
+                          '**/*_Factory.*',
+                          '**/*_MembersInjector.*',
+                          '**/*ActivityStarter.*',
+                          '**/dagger/**'
         ]
         def classTree = fileTree(
                 dir: variant.javaCompiler.destinationDir,
