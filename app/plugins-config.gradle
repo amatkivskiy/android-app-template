@@ -1,31 +1,31 @@
 //--------------  KTLint Configuration  -------------------
-// configurations {
-//     ktlint
-// }
+ configurations {
+     ktlint
+ }
 
-// task ktlint(type: JavaExec, group: "verification") {
-//     description = "Check Kotlin code style."
-//     classpath = configurations.ktlint
-//     main = "com.github.shyiko.ktlint.Main"
-//     args "src/**/*.kt", "--color"
-//     // to generate report in checkstyle format prepend following args:
-//     // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
-//     // see https://github.com/shyiko/ktlint#usage for more
-// }
+ task ktlint(type: JavaExec, group: "verification") {
+     description = "Check Kotlin code style."
+     classpath = configurations.ktlint
+     main = "com.github.shyiko.ktlint.Main"
+     args "src/**/*.kt", "--color"
+     // to generate report in checkstyle format prepend following args:
+     // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+     // see https://github.com/shyiko/ktlint#usage for more
+ }
 
-// check.dependsOn ktlint
+ check.dependsOn ktlint
 
-// task ktlintFormat(type: JavaExec, group: "formatting") {
-//     description = "Fix Kotlin code style deviations."
-//     classpath = configurations.ktlint
-//     main = "com.github.shyiko.ktlint.Main"
-//     args "-F", "src/**/*.kt"
-// }
+ task ktlintFormat(type: JavaExec, group: "formatting") {
+     description = "Fix Kotlin code style deviations."
+     classpath = configurations.ktlint
+     main = "com.github.shyiko.ktlint.Main"
+     args "-F", "src/**/*.kt"
+ }
 
 //--------------  JACOCO Configuration  -------------------
 
 jacoco {
-    toolVersion = '0.8.0'
+    toolVersion = '0.8.2-SNAPSHOT'
 }
 
 tasks.withType(Test) {
@@ -50,16 +50,19 @@ variants().all { variant ->
             csv.enabled = false
         }
 
-        def fileFilter = [ '**/R.class',
-                           '**/R$*.class',
-                           '**/BuildConfig.*',
-                           '**/Manifest*.*',
-                           '**/*Test*.*',
-                           'android/**/*.*',
-                           '**/*_Factory.*',
-                           '**/*_MembersInjector.*',
-                           '**/*ActivityStarter.*',
-                           '**/dagger/**'
+        def fileFilter = ['**/R.class',
+                          '**/R$*.class',
+                          /* This  is made intentionally cause the focus should be on business logic */
+                          'com/github/amatkivskiy/template/presentation/**',
+
+                          '**/BuildConfig.*',
+                          '**/Manifest*.*',
+                          '**/*Test*.*',
+                          'android/**/*.*',
+                          '**/*_Factory.*',
+                          '**/*_MembersInjector.*',
+                          '**/*ActivityStarter.*',
+                          '**/dagger/**'
         ]
         def classTree = fileTree(
                 dir: variant.javaCompiler.destinationDir,
@@ -104,6 +107,7 @@ gnag {
     github {
         rootUrl 'https://api.github.com/repos/'
         repoName 'amatkivskiy/android-app-template'
+        authToken "$System.env.GITHUB_TOKEN"
+        issueNumber "$System.env.BITRISE_PULL_REQUEST"
   }
-
 }

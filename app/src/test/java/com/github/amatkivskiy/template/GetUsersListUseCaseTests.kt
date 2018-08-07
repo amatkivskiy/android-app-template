@@ -9,7 +9,6 @@ import com.github.amatkivskiy.template.domain.usecase.GetUsersListUseCase
 import com.github.amatkivskiy.template.testutils.assertCompletedAndGetFirstValue
 import com.github.amatkivskiy.template.testutils.streamFromFile
 import com.github.amatkivskiy.template.util.isSuccessful
-import com.github.amatkivskiy.template.util.isSuccessfulNonEmpty
 import com.google.gson.Gson
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.whenever
@@ -34,7 +33,7 @@ class GetUsersListUseCaseTests {
         val repository = DiskUserRepository(assertReader, gson)
         val dataSource = DefaultUserDataSource(repository)
 
-        this.getUsersListUseCase = GetUsersListUseCase(null, null, dataSource)
+        this.getUsersListUseCase = GetUsersListUseCase(mock(), mock(), dataSource)
     }
 
     @Test
@@ -45,7 +44,7 @@ class GetUsersListUseCaseTests {
         val result = getUsersListUseCase.getRawObservable()
             .assertCompletedAndGetFirstValue()
 
-        result.isSuccessfulNonEmpty().`should be true`()
+        result.isSuccessful().`should be true`()
         result.get().size `should be equal to` 2
 
         val firstUser = result.get()[0]
@@ -54,6 +53,8 @@ class GetUsersListUseCaseTests {
         firstUser.name `should not be` null
         firstUser.name.first `should be equal to` "joel"
         firstUser.name.last `should be equal to` "gonzalez"
+        firstUser.phone `should be equal to` "(568)-213-2751"
+        firstUser.cell`should be equal to` "(004)-911-3317"
 
         firstUser.picture `should not be` null
         firstUser.picture.large `should be equal to` "https://randomuser.me/api/portraits/men/56.jpg"
@@ -61,6 +62,8 @@ class GetUsersListUseCaseTests {
         secondUser.name `should not be` null
         secondUser.name.first `should be equal to` "valdemar"
         secondUser.name.last `should be equal to` "jørgensen"
+        secondUser.phone `should be equal to` "78745309"
+        secondUser.cell `should be equal to` "78261451"
 
         secondUser.picture `should not be` null
         secondUser.picture.large `should be equal to` "https://randomuser.me/api/portraits/men/42.jpg"

@@ -6,8 +6,8 @@ import android.widget.TextView
 import com.github.amatkivskiy.template.R
 import com.github.amatkivskiy.template.presentation.dagger.component.PresenterComponent
 import com.github.amatkivskiy.template.presentation.ui.BaseDaggerMvpFragment
-import com.github.amatkivskiy.template.presentation.utils.bindView
 import com.marcinmoskala.activitystarter.argExtra
+import kotterknife.bindView
 
 @ActivityStarterConfig
 class UserContactsFragment : BaseDaggerMvpFragment<UserContactsView, UserContactsPresenter>(), UserContactsView {

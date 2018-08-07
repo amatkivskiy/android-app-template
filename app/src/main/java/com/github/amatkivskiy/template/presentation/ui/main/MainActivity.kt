@@ -11,7 +11,6 @@ import com.github.amatkivskiy.template.domain.model.User
 import com.github.amatkivskiy.template.presentation.dagger.component.PresenterComponent
 import com.github.amatkivskiy.template.presentation.ui.BaseDaggerMvpActivity
 import com.github.amatkivskiy.template.presentation.ui.details.UserDetailsActivityStarter
-import com.github.amatkivskiy.template.presentation.utils.bindView
 import com.github.amatkivskiy.template.util.CircleTransform
 import com.github.amatkivskiy.template.util.loadUrl
 import com.marshalchen.ultimaterecyclerview.ItemTouchListenerAdapter
@@ -21,6 +20,7 @@ import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder
 import com.marshalchen.ultimaterecyclerview.grid.BasicGridLayoutManager
 import com.mcxiaoke.koi.ext.toast
+import kotterknife.bindView
 
 class MainActivity : BaseDaggerMvpActivity<MainView, MainPresenter>(), MainView {
     private val usersListRecyclerView: UltimateRecyclerView by bindView(R.id.recycler_view_beers)
